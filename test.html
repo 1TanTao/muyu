@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  html,
+  body {
+    width: 750px;
+    height: 100%;
+    background: black;
+  }
+
+  .count {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .muyu {
+    width: 182px;
+    height: 145px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .mtxt {
+    position: absolute;
+    color: #fff;
+    font-size: 18px;
+    right: 0;
+    top: -30px;
+    opacity: 0;
+  }
+
+  .mtxts {
+    position: absolute;
+    color: #fff;
+    font-size: 18px;
+    right: 0;
+    top: -30px;
+    animation: shake 0.5s linear;
+    opacity: 0;
+  }
+
+  @keyframes shake {
+
+    0% {
+      top: -30px;
+      opacity: 1;
+    }
+
+    50% {
+      top: -60px;
+      opacity: 0.5;
+    }
+
+    100% {
+      top: -90px;
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  function myopen() {
+    // 音效
+    let music = document.querySelector('#music');
+    music.play()
+    let txt = document.getElementById("mtxt")
+    txt.setAttribute("class", "mtxts");
+    setTimeout(function () {
+      txt.setAttribute("class", "mtxt");
+      console.log("zz")
+    }, 500)
+  }
+</script>
+
+<body>
+  <div class="count">
+    <div id="muyu" class="muyu" onclick="myopen()">
+      <img src="./muyu.jpg" />
+      <div id="mtxt" class="mtxt">功德 +1</div>
+    </div>
+    <audio id="music" src="./my.mp3"></audio>
+  </div>
+</body>
+
+</html>
