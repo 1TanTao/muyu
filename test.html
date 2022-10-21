@@ -36,7 +36,7 @@
   }
 
   .imgs {
-    animation: change 0.5s linear;
+    animation: change 0.4s linear;
   }
 
   .mtxt {
@@ -54,7 +54,7 @@
     font-size: 22px;
     right: 0;
     top: -30px;
-    animation: shake 0.5s linear;
+    animation: shake 0.4s linear;
     opacity: 0;
   }
 
@@ -64,7 +64,7 @@
     }
 
     50% {
-      transform: scale(0.8);
+      transform: scale(0.9);
     }
 
     100% {
@@ -92,7 +92,14 @@
 </style>
 
 <script>
+  var isGo = true
   function myopen() {
+    if (!isGo) {
+      return
+    }
+    isGo = false
+    // s随机生成文字
+    generateMixed(1)
     // 音效
     let music = document.querySelector('#music');
     music.play()
@@ -104,8 +111,23 @@
     setTimeout(function () {
       txt.setAttribute("class", "mtxt");
       img.setAttribute("class", "img");
-    }, 500)
+      isGo = true
+    }, 400)
   }
+
+  var str = ['', '功德 +1', '颜值 +1', '身高 +1', '体重 -1', '静心 +1', '财富 +1', '颜值 +1', '功德 +1', '烦恼 -1', '财富 +1'];
+  function generateMixed(n) {
+    var res = "";
+    let txt = document.getElementById("mtxt")
+    for (var i = 0; i < n; i++) {
+      var id = Math.ceil(Math.random() * 10);
+      res += str[id];
+    }
+    txt.innerHTML = res
+  }
+
+
+
 </script>
 
 <body>
