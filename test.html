@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+  <meta content="width=device-width,user-scalable=no" name="viewport">
+</head>
+
 <style>
   * {
     margin: 0;
@@ -9,7 +13,6 @@
 
   html,
   body {
-    width: 750px;
     height: 100%;
     background: black;
   }
@@ -24,14 +27,22 @@
   .muyu {
     width: 182px;
     height: 145px;
-    margin: 0 auto;
+    margin: 80px auto 0;
     position: relative;
+  }
+
+  .img {
+    transform: scale(1.0);
+  }
+
+  .imgs {
+    animation: change 0.5s linear;
   }
 
   .mtxt {
     position: absolute;
     color: #fff;
-    font-size: 18px;
+    font-size: 22px;
     right: 0;
     top: -30px;
     opacity: 0;
@@ -40,11 +51,25 @@
   .mtxts {
     position: absolute;
     color: #fff;
-    font-size: 18px;
+    font-size: 22px;
     right: 0;
     top: -30px;
     animation: shake 0.5s linear;
     opacity: 0;
+  }
+
+  @keyframes change {
+    0% {
+      transform: scale(1.0);
+    }
+
+    50% {
+      transform: scale(0.8);
+    }
+
+    100% {
+      transform: scale(1.0);
+    }
   }
 
   @keyframes shake {
@@ -71,11 +96,14 @@
     // 音效
     let music = document.querySelector('#music');
     music.play()
+    // 文字
     let txt = document.getElementById("mtxt")
+    let img = document.getElementById("img")
     txt.setAttribute("class", "mtxts");
+    img.setAttribute("class", "imgs");
     setTimeout(function () {
       txt.setAttribute("class", "mtxt");
-      console.log("zz")
+      img.setAttribute("class", "img");
     }, 500)
   }
 </script>
@@ -83,7 +111,7 @@
 <body>
   <div class="count">
     <div id="muyu" class="muyu" onclick="myopen()">
-      <img src="./muyu.jpg" />
+      <img id="img" class="img" src="./muyu.jpg" />
       <div id="mtxt" class="mtxt">功德 +1</div>
     </div>
     <audio id="music" src="./my.mp3"></audio>
